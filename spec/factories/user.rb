@@ -7,5 +7,7 @@ FactoryGirl.define do
     end
     password '123Qwerty'
     password_confirmation '123Qwerty'
+    authentication_token 'GKKOAlHPQrbIHYaJ'
+    authentication_token_created_at Time.now
   end
 end

@@ -16,6 +16,8 @@ Style/Documentation:
   Enabled: false
 Style/FrozenStringLiteralComment:
   Enabled: false
+Style/AndOr:
+  EnforcedStyle: conditionals
 Metrics/ParameterLists:
   Max: 6
   CountKeywordArgs: true

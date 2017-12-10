@@ -6,6 +6,5 @@ Rails.application.routes.draw do
               default: true do
     resources :authentication, only: :create
     resources :users
-    resources :properties
   end
 end

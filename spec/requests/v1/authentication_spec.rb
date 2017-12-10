@@ -13,11 +13,8 @@ RSpec.describe 'user authentication endpoint' do
       expect(response).to have_http_status(:ok)
     end
 
-    it 'should return the user details' do
-      expect(json_body).to eq('user' => { 'id' => user.id,
-                                          'first_name' => user.first_name,
-                                          'last_name' => user.last_name,
-                                          'email' => user.email })
+    it 'should return the user auth token' do
+      expect(response.body).to be_kind_of(String)
     end
   end
 
