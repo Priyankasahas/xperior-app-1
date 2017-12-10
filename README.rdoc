@@ -59,9 +59,9 @@ Run bundle in each project.
 
 ## Starting
 
-Run Xperior-app-2
-Run Xperior-app-1 on port 4000
-Seed first (first_name, last_name, email, password, password_confirmation) to the DB
+- Run Xperior-app-2
+- Run Xperior-app-1 on port 4000
+- Seed first (first_name, last_name, email, password, password_confirmation) to the DB
 
 ## Curl requests to CRUD properties from Xperior-app-2 (client app) which utilises the Xperior-app-1 (API) to interact with the DB.
 - NOTE: Replace user email and password with your seeded user details.
