@@ -1,28 +1,78 @@
-== README
+# Xperior API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Technology
 
-Things you may want to cover:
+## Data
 
-* Ruby version
+Database - Xperior
 
-* System dependencies
+## Platform
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Ruby on Rails 5.1.4 with Ruby 2.3.1, RSpec isolation & integration test suite
+  - Dependencies specified in Gemfile
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+## Tests
+
+Tests written using RSpec. Style validation via Rubocop.
+
+````
+$ rspec && rubocop
+````
+
+Testing Philosophy, following recommendations in https://www.destroyallsoftware.com/screencasts/catalog/web-apps-when-to-test-in-isolation, ie:
+
+- routes & controllers - integration using RSpec feature tests
+- lib classes - isolation
+- models - integration
+- network - isolation via VCR
+
+
+### Notes
+
+Active record based Rails application
+
+# Architecture
+
+The following descriptions provide an overview of the overall system.
+
+The overall architecture consists of a set of micro-services that provide units of functionality
+
+- Xperior-app-1
+JSON API only service providing access to properties and authentication content
+
+- Xperior-app-2
+Client providing public and authenticated user access to content
+
+## Code
+
+Checkout the following projects directory from Git:
+
+- https://github.com/Priyankasahas/xperior-app-1
+- https://github.com/Priyankasahas/xperior-app-2
+
+Run bundle in each project.
+
+## Databases
+
+'Xperior' require MySQL 5.6 database configurations in the config/database.yml
+
+## Starting
+
+Run Xperior-app-2
+Run Xperior-app-1 on port 4000
+Seed first (first_name, last_name, email, password, password_confirmation) to the DB
+
+## Curl requests to CRUD properties from Xperior-app-2 (client app) which utilises the Xperior-app-1 (API) to interact with the DB.
+- NOTE: Replace user email and password with your seeded user details.
+
+- Create
+- curl -d '{"user":{"email":"priyanka.patel@email.com","password":"Testing123#"},"property":{"building_name":"CommonWealth Bank","address":"123 Park Street, Melbourne"}}' -H "Content-Type: application/json" -X POST http://localhost:3000/properties
+- Index
+- curl -d '{"user":{"email":"priyanka.patel@email.com", "password":"Testing123#"}}' -H "Content-Type: application/json" -X GET http://localhost:3000/properties
+- Show
+- curl -d '{"user":{"email":"priyanka.patel@email.com", "password":"Testing123#"}}' -H "Content-Type: application/json" -X GET http://localhost:3000/properties/1
+- Update
+- curl -d '{"user":{"email":"priyanka.patel@email.com","password":"Testing123#"},"property":{"address":"123 Park Street, Melbourne"}}' -H "Content-Type: application/json" -X PUT http://localhost:3000/properties/1
+- Delete
+- curl -d '{"user":{"email":"priyanka.patel@email.com", "password":"Testing123#"}}' -H "Content-Type: application/json" -X DELETE http://localhost:3000/properties/1
