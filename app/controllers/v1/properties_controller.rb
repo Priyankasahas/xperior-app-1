@@ -38,9 +38,9 @@ module V1
     end
 
     def destroy
-      s = Property.find_by(id: params[:id])
-      if s.present?
-        s.destroy
+      property = Property.find_by(id: params[:id])
+      if property.present?
+        property.destroy
         render json: { success: true }
       else
         render json: { success: false, error: "Property not found with #{params[:id]}" }, status: :not_found
@@ -54,7 +54,7 @@ module V1
     end
 
     def update_params
-      params.require(:property).permit(:building_name, :address)
+      params.require(:property).permit(:address)
     end
   end
 end

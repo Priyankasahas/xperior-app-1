@@ -7,17 +7,17 @@ RSpec.describe 'update property endpoint' do
   context 'given valid property data' do
     before do
       property = create(:property, building_name: building_name, address: address)
-      authenticated_put property_path(property.id), property: { building_name: 'CommonWealth Bank' }
+      authenticated_put property_path(property.id), property: { address: '111 Market Street, Melbourne' }
     end
 
     it 'should update property' do
-      expect(Property.first.building_name).to eq('CommonWealth Bank')
+      expect(Property.first.address).to eq('111 Market Street, Melbourne')
     end
   end
 
   context 'given invalid property data' do
     before do
-      authenticated_put property_path(11111), property: { building_name: 'CommonWealth Bank' }
+      authenticated_put property_path(11111), property: { address: '111 Market Street, Melbourne' }
     end
 
     it 'should return not found' do
